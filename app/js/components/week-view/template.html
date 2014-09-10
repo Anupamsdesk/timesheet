@@ -1,0 +1,32 @@
+<div class='week-view'>
+	<a class='btn btn-default' ng-click='monthView()'>Switch to Month View</a>
+	<hr/>
+	<div class='row'>
+		<div class='days-view col-xs-3 col-md-3'>
+			<div class='week-navigator'>
+				<a class='btn' ng-click='previousWeek()'><i class='glyphicon glyphicon-circle-arrow-left'></i></a>
+				<a>Week1</a>
+				<a class='btn' ng-click='nextWeek()'><i class='glyphicon glyphicon-circle-arrow-right'></i></a>
+			</div>
+			<div container-list collection='collection' class-names='list-unstyled' 
+				click-event='dayClicked' show='showList' selected-date-id='selectedDateId' 
+					item-template='day-of-week-list-item'>
+			</div>
+		</div>
+		<div class='dayDetails col-xs-9 col-md-9'>
+			<div class="row">
+				<lead>Day details</lead>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">
+					Column1
+
+				</div>
+				<div class="col-xs-6">
+					Column2
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

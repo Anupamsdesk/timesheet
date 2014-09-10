@@ -1,0 +1,114 @@
+@import './../lib/bootstrap-less/less/bootstrap.less';
+@import 'myvariables.less';
+
+.body{
+	background-color: 'yellow';
+}
+
+.week-view{
+	margin-left: 5px;
+	.dayDetails{
+		background-color: @calendar-day-details-background-color;
+		min-height: 400px;
+	}
+	.days-view{
+		border-width: 1px;
+		border-style: solid;
+		border-radius: 5px;
+		border-color: @calendar-container-border-color;
+		text-align: center;
+		padding-right: 0;
+
+		.list{
+			text-align: left;
+			.list-item{
+				background-color: white;
+				//height: 40px;
+				vertical-align: middle;
+				display: block;
+				font-size: small;
+				//line-height: 40px;
+				border-radius: 5px;
+				padding: 0px 5px;
+				border-width: 1px;
+				border-style: solid;
+				margin-top: 2px;
+				border-color: @calendar-container-border-color;
+				cursor: pointer;
+				.title-1{
+					font-weight: bold;
+					font-style: italic;
+				}
+				.title-2{
+					//font-size: smaller;
+					text-align: center;
+				}
+			}
+			.list-item:hover{
+				background-color: darken(@calendar-days-background-color, 10%);
+			}
+			.active {
+				background-color: @calendar-day-details-background-color;
+				width: 105%;
+				border-right: none;
+			}
+			.active:hover{
+				background-color: ligth-blue;
+			}
+		}
+	}
+}
+
+.month-view {
+	.month-container{
+		background-color: @calendar-container-background-color;
+		border-color: @calendar-container-border-color;
+		border-radius: 5px;
+		border-style: solid;
+		border-width: 1px;
+		.row{
+			margin: 5px 5px;
+		}
+		.day{
+			display: table-cell;
+			width: 100px;
+			height: 100px;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 5px;
+			text-align: center;
+			border-color: @calendar-container-border-color;
+			background-color: @calendar-days-background-color;
+			margin-right: 3px;
+		}
+		.list {
+			.week{
+				padding-bottom: 1px;
+				display: table-row;
+				.day{
+					cursor: pointer;
+				}
+				.day:hover{
+					background-color: darken(@calendar-days-background-color, 10%);
+				 }
+				.empty{
+					background-color: transparent;
+					border-style: none;
+					border-radius: 5px;
+				}
+				.empty:hover{
+					background-color: transparent;
+				}
+			}
+		}
+		.week-day-names{
+			.day{
+				//line-height: 20px;
+				height: 50px;
+				background-color: darken(@calendar-days-background-color, 10%);
+				vertical-align: middle;
+				font-weight: bold;
+			}
+		}
+	}
+}

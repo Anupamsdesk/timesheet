@@ -1,0 +1,37 @@
+<div class='month-view'>
+		<h2>Calendar</h2>
+		<div class="month-container container"> 
+			<div class='row' style='text-align:center'>
+				<form class='form-inline'>
+					<a class='btn' ng-click='decrease()'>
+						<i class='glyphicon glyphicon-circle-arrow-left'></i>
+					</a>
+
+					<select ng-model='currentDate.month' class='form-control input-month' 
+						ng-options='d for d in monthList'>
+					</select>
+
+					<select ng-model="currentDate.year" class='form-control input-year' 
+						ng-options='d for d in yearList'>
+					</select>
+
+					<a class='btn' ng-click='increase()'>
+						<i class='glyphicon glyphicon-circle-arrow-right'></i>
+					</a>
+			</div>
+
+			<div class='row'>
+				<div class='monthly-calendar col-xs-8'>
+					<div class='week-day-names'>
+							<div class='day' ng-repeat='dayName in weekDayNames' class='day'>
+								{{dayName}}
+							</div>
+					</div>
+					<div class='list'></div>
+				</div>
+				<div class='lead'>
+					Here goes the monthly reports details
+				</div>
+
+		</div>
+</div>
