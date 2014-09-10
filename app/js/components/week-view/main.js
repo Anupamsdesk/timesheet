@@ -41,6 +41,7 @@ app.directive('calWeekView', ['$compile', 'DateService', function($compile, Date
 				var vc='';
 				angular.forEach($scope.collection, function(aModel){
 					if (aModel.id === id){
+						console.log(id);
 						vc = aModel.date;
 					}
 				});
