@@ -1,14 +1,61 @@
 @import './../lib/bootstrap-less/less/bootstrap.less';
 @import 'myvariables.less';
 
-.body{
-	background-color: 'yellow';
+body{
+	margin-top: 40px;
+}
+.navbar{
+	height: 30px;
+	min-height: 30px; 
+	.navbar-brand{
+		height: 30px;
+		padding: 5px 5px;
+	}
+}
+
+
+.task-detail-form{
+	border-left: 1px;
+	border-left-style: solid;
+	border-color: @calendar-container-border-color;
+
+	.form-group{
+		margin-bottom: 5px;
+	}
+	label{
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+	}
+}
+.task-list{
+	.list-item{
+		display: block;
+		border-radius: 5px;
+		padding: 5px 5px;
+		border-width: 1px;
+		border-style: solid;
+		margin-top: 2px;
+		cursor: pointer;
+		border-color: @calendar-container-border-color;
+	}
+	.list-item:hover{
+			background-color: darken(@calendar-days-background-color, 10%);
+
+		}
+		.active {
+				background-color: @calendar-day-details-background-color;
+				border-right: none;
+			}
+			.active:hover{
+				background-color: ligth-blue;
+
+			}
 }
 
 .week-view{
 	margin-left: 5px;
 	.dayDetails{
-		background-color: @calendar-day-details-background-color;
+		//background-color: @calendar-day-details-background-color;
 		min-height: 400px;
 	}
 	.days-view{
@@ -56,6 +103,12 @@
 				background-color: ligth-blue;
 			}
 		}
+	}
+	.week-view-details{
+		border-width: 1px;
+		border-style: solid;
+		border-color: @calendar-container-border-color;
+		border-radius: 5px;
 	}
 }
 

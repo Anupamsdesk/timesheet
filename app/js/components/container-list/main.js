@@ -11,29 +11,29 @@ app.directive('containerList', ['$compile', function($compile){
 			classNames: '@',
 			clickEvent: '=',
 			show: '=',
-			selectedDateId: '=',
+			selectedId: '=',
 			itemTemplate: '@'
 		},
 		controller: ['$scope', function(self){
 			console.log('inside container-list-ctrl');
-			self.selectedId = -1;
+			self.selectedId = self.selectedId ? self.selectedId : -1;
 			self.click = function(id, $event){
+				console.log(id);
+				self.selectedId = id;
 				if (self.clickEvent){
 					self.clickEvent(id);
 				}
-				self.selectedId = id;
 			};
 			self.ifActiveGetClass = function(id){
 				return (id === self.selectedId) ? 'active' : 'not-active';
 			};
 		}],
 		link: function(scope, el, attrs){
-
 			scope.$watchCollection('collection', function(v){
 				console.log('CChere');
 				clearAndRender();
 			});
-			scope.$watch('selectedDateId', function(){
+			scope.$watch('selectedId', function(){
 				clearAndRender();
 			});
 			function clearAndRender(){
@@ -65,7 +65,6 @@ app.directive('containerList', ['$compile', function($compile){
 					}else{
 						toAppend = temp2;
 					}
-					console.log(toAppend);
 					var $ul = $(el.find('ul'));
 					var ns = scope.$new();
 					ns.item = item;

@@ -1,7 +1,7 @@
 <div class='week-view'>
 	<a class='btn btn-default' ng-click='monthView()'>Switch to Month View</a>
 	<hr/>
-	<div class='row'>
+	<div class='row week-view-details'>
 		<div class='days-view col-xs-3 col-md-3'>
 			<div class='week-navigator'>
 				<a class='btn' ng-click='previousWeek()'>
@@ -13,7 +13,7 @@
 				</a>
 			</div>
 			<div container-list collection='collection' class-names='list-unstyled' 
-				click-event='dayClicked' show='showList' selected-date-id='selectedDateId' 
+				click-event='dayClicked' show='showList' selected-id='selectedDateId' 
 					item-template='day-of-week-list-item'>
 			</div>
 		</div>
