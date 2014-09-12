@@ -1,46 +1,22 @@
 app.service('TaskDataService', function(){
+	var userData = DATA;
 	var uid = 1;
 	function getTasks(aDate){
-		return 	[{
-					id: 1,
-					title: 'A task of Id: 1',
-					timeHrs: 5,
-					timeMins: 30,
-					category: 1,
-					taskType: 9,
-					group: 5,
-					description: 'This is description 1'
-				},
-				{
-					id: 2,
-					title: 'A task of Id: 2',
-					timeHrs: 7,
-					timeMins: 45,
-					category: 2,
-					taskType: 8,
-					group: 2,
-					description: 'This is description 2'
-				},
-				{
-					id: 3,
-					title: 'A task of Id: 3',
-					timeHrs: 9,
-					timeMins: 55,
-					category: 3,
-					taskType: 7,
-					group: 4,
-					description: 'This is description 3'
-				}];
+		var dateString = aDate.format('YYYY-MM-DD');
+		var data = _.filter(userData, function(d){
+			return d.dateId === dateString;
+		});
+		console.log('getTasks: ' + dateString);
+		console.log(data.length);
+		return data;
 	}
 	function getTaskById(id){
 		console.log('get task by id: '+ id);
-		var tasks = getTasks();
-		for(var i=0; i<=tasks.length; i++){
-			if (tasks[i].id === id){
-				return tasks[i];
-			}
-		}
-		return '';
+		var tasks = _.filter(userData, function(d){
+			return d.id === id;
+		});
+		return tasks[0];
+
 	}
 
 	function getOptions(name){
