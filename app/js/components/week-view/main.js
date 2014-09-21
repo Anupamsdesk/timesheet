@@ -1,19 +1,19 @@
 /*globals app*/
 app.directive('calWeekView', ['DateService', '$location', function (DateService, $location) {
   return {
-    templateUrl: 'js/components/week-view/template.html',
-    restrict: 'AC',
-    transclude: true,
-    replace: true,
-    scope: {
-      today : '=',
+    templateUrl : 'js/components/week-view/template.html',
+    restrict    : 'AC',
+    transclude  : true,
+    replace     : true,
+    scope       : {
+      today         : '=',
       showMonthView : '='
     },
-    controller: ['$scope', function ($scope) {
+    controller  : ['$scope', function ($scope) {
 
       function initialize() {
-        $scope.collection = [];
-        $scope.showList = true;
+        $scope.collection     = [];
+        $scope.showList       = true;
         $scope.selectedDateId = 0;
       }
 
@@ -23,8 +23,9 @@ app.directive('calWeekView', ['DateService', '$location', function (DateService,
       }
 
       function updateWeek() {
-        var dataDates = DateService.getAllDaysInWeek($scope.today);
-        var collection = [];
+        var dataDates = DateService.getAllDaysInWeek($scope.today),
+          collection  = [];
+
         initialize();
         $scope.selectedDateId = 0;
         angular.forEach(dataDates, function (aDate, i) {

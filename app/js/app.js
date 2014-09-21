@@ -8,6 +8,7 @@ app.config(['$routeProvider', function ($routeProvider) {
   $routeProviderReference = $routeProvider;
 }]);
 
+
 //listen to route errors and successes
 app.run(['$rootScope', '$location', function ($rootScope, $location) {
   /*$rootScope.$on('$routeChangeSuccess', function (rc) {

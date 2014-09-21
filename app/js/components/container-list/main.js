@@ -13,7 +13,8 @@ app.directive('containerList', ['$compile', function ($compile) {
       clickEvent      : '=',
       show            : '=',
       selectedId      : '=',
-      itemTemplate    : '@'
+      itemTemplate    : '@',
+      notFoundText    : '@'
     },
     controller  : ['$scope', function (self) {
       self.selectedId = self.selectedId || -1;
@@ -26,6 +27,7 @@ app.directive('containerList', ['$compile', function ($compile) {
       self.ifActiveGetClass = function (id) {
         return (id === self.selectedId) ? 'active' : 'not-active';
       };
+      self.notFoundText = self.notFoundText || 'No records found!';
     }],
     link        : function (scope, el) {
       function render() {

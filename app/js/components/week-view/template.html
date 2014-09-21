@@ -1,5 +1,6 @@
 <div class='week-view'>
-	<a class='btn btn-default' ng-click='monthView()'>Switch to Month View</a>
+	<a class='btn btn-default' ng-click='monthView()'>
+		{{'switchToMonthView' | localise}}</a>
 	<hr/>
 	<div class='row week-view-details'>
 		<div class='days-view col-xs-3 col-md-3'>
@@ -12,9 +13,11 @@
 					<i class='glyphicon glyphicon-circle-arrow-right'></i>
 				</a>
 			</div>
+			
 			<div container-list collection='collection' class-names='list-unstyled' 
 				click-event='dayClicked' show='showList' selected-id='selectedDateId' 
-					item-template='day-of-week-list-item'>
+					item-template='day-of-week-list-item' 
+					not-found-text="noTaskFound">
 			</div>
 		</div>
 		<div day-detail-view selected-id='selectedDateId' today='today'></div>

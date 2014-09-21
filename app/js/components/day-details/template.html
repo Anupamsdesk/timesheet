@@ -3,18 +3,21 @@
 		<div class="col-xs-6">
 			<div class='heading label' ng-class='statusLabel'> 
 				<span>
-				Total Time:  
-				<span class='badge badge-important'>{{totalTime.timeHrs}}</span>hrs 
-				<span class='badge badge-important'> {{totalTime.timeMins}}</span>mins
+					{{'totalTime' | localise}}:  
+				<span class='badge badge-important'>{{totalTime.timeHrs}}</span>
+					{{'hourMedium' | localise}} 
+				<span class='badge badge-important'> {{totalTime.timeMins}}</span>
+					{{'minMedium'  | localise}}
 				</span>
 				<span class='pull-right btn btn-default' ng-click='addTask()'>
 					<i class='glyphicon glyphicon-plus'></i>
 				</span>
 			</div>
 			
-
-			<div container-list collection='collection' class-names='list-unstyled  task-list' 
-				show='true' selected-id='selectedId' 
+			<div container-list collection='collection' 
+				class-names='list-unstyled  task-list' 
+				show='true' selected-id='selectedId'
+					not-found-text='{{"noTaskFound" | localise}}' 
 						item-template='task-item'>
 			</div>
 		</div>
