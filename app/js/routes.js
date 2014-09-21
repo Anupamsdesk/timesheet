@@ -1,11 +1,7 @@
-//ROUTER
-
-
-
-
-app.run(['authService', function(authService){
+/*globals app, $routeProviderReference*/
+app.run(['authService', function (authService) {
   var $rp = $routeProviderReference;
-  
+
   $rp.when('/', {
     templateUrl: 'js/views/month-view-template.html',
     controller: 'appCtrl',
@@ -13,7 +9,7 @@ app.run(['authService', function(authService){
       'authentication': authService.authenticate
     }
   });
-  
+
   $rp.when('/login', {
     templateUrl: 'js/views/login-view-template.html',
     controller: 'loginCtrl'
@@ -23,14 +19,14 @@ app.run(['authService', function(authService){
     templateUrl: 'js/views/week-view-template.html',
     controller: 'appCtrl'
   });
-  
+
   $rp.when('/month-view', {
     templateUrl: 'js/views/month-view-template.html',
     controller: 'appCtrl'
   });
-  
+
   $rp.otherwise({
     redirectTo: '/login'
   });
-}])
+}]);
 

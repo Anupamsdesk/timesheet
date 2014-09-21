@@ -1,5 +1,5 @@
+/*globals app*/
 /* Model Schema
-
 {
   "dateId":"2014-02-27",
   "id":"ab9622f9-1925-40ab-aab3-27349022f933",
@@ -14,79 +14,74 @@
 }
 */
 
-app.service('TaskDataService', ['TaskOptionsService', '$q', 'authService', 'Repository', function(TaskOptions, $q, auth, repository){
-  
-  var userData = [];
-  var uid = 1;
-  var counter = 1;
-  
-  function generateTaskId(){
-    return Date().toString()+ uid + counter++;
-  }
+app.service('TaskDataService', ['TaskOptionsService', '$q', 'authService', 'Repository', 'GuidService', function (TaskOptions, $q, auth, repository, guidService) {
 
-  function createDefaultTask(dateId){
-    return {
-      dateId: dateId,
-      userId: uid,
-      taskType: 1,
-      category: 1,
-      group: 1,
-      timeMins: 0,
-      timeHrs: 0,
-      title: '',
-      taskDescription: '',
-      id: generateTaskId()
-    };
-  }
-
-  function getUserId(){
+  function getUserId() {
     return auth.getUser().id;
   }
 
-  function getTasks(aDate){
+  function generateTaskId() {
+    return guidService.get();
+  }
+
+  function createDefaultTask(dateId) {
+    return {
+      dateId          : dateId,
+      userId          : getUserId(),
+      taskType        : 1,
+      category        : 1,
+      group           : 1,
+      timeMins        : 0,
+      timeHrs         : 0,
+      title           : '',
+      taskDescription : '',
+      id              : generateTaskId()
+    };
+  }
+
+  function getTasks(aDate) {
     return repository.findByDate(aDate);
   }
-  function getTaskById(id){
-    console.log('get task by id: '+ id);
-    return repository.findById(id);
+  function getTaskById(id, aDateId) {
+    return repository.findById(id, aDateId);
   }
 
-  function removeTask(id){
-    return repository.delete(id);
+  function removeTask(id, dateId) {
+    return repository.delete(id, dateId);
   }
 
-  function createTask(aDate){
+  function createTask(aDate) {
     return createDefaultTask(aDate);
   }
-  function save(aModel){
+  function save(aModel) {
     var defer = $q.defer();
 
-    repository.findById(aModel.id).then(function(){
-      console.log('repo: updating..');
-      repository.update(aModel).then(function(data){
-        defer.resolve(data);
-      }, function(){
-        defer.reject('ERROR while updating');
-      });
-    },
-    function(){
-      console.log('repo: inserting..');
-      repository.insert(aModel).then(function(data){
-        defer.resolve(data);
-      }, function(){
-        defer.reject('ERROR while inserting');
-      });
-    });
+    repository.findById(aModel.id, aModel.dateId).then(
+      function () { //object exists already so update
+        repository.update(aModel).then(function (data) {
+          defer.resolve(data);
+        }, function () {
+          defer.reject('ERROR while updating');
+        });
+      },
+      function () { //object does not exist so create
+        repository.insert(aModel).then(function (data) {
+          defer.resolve(data);
+        }, function () {
+          defer.reject('ERROR while inserting');
+        });
+      }
+    );
 
     return defer.promise;
   }
 
-  return{
-    getTasks: getTasks,
-    getTaskById: getTaskById,
-    getOptions: TaskOptions.getOptions,
-    createTask: createTask,
-    save: save,
-    removeTask: removeTask
-  }
+  return {
+    getTasks    : getTasks,
+    getTaskById : getTaskById,
+    getOptions  : TaskOptions.getOptions,
+    createTask  : createTask,
+    save        : save,
+    removeTask  : removeTask
+  };
 }]);

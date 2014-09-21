@@ -1,18 +1,14 @@
-app.service('authService', ['$q',function($q) {
-  
-  return{
-    authenticate: function(){
+/*globals app*/
+app.service('authService', ['$q', function ($q) {
+  var userObj = {'name': 'Anupam Singh', 'id': '1'};
+  return {
+    authenticate: function () {
       var defer = $q.defer();
       defer.resolve();
-      //defer.reject();
       return defer.promise;
     },
-    getUser: function(){
-      var obj = {'name': 'Anupam Singh', 'id': '12902312'};
-      var defer = $q.defer();
-      defer.resolve(obj);
-      return defer.promise;
+    getUser: function () {
+      return angular.copy(userObj);
     }
-  }
-  
+  };
 }]);
