@@ -2,19 +2,19 @@
 		<div class="month-container container"> 
 			<div class='row' style='text-align:center'>
 				<form class='form-inline'>
-					<a class='btn' ng-click='decrease()'>
+					<a class='btn' ng-click='increase(-1)'>
 						<i class='glyphicon glyphicon-circle-arrow-left'></i>
 					</a>
 
-					<select ng-model='currentDate.month' class='form-control input-month' 
+					<select ng-model='currentDate.month' class='form-control input-month' ng-change='selectionChanged()'
 						ng-options='d for d in monthList'>
 					</select>
 
-					<select ng-model="currentDate.year" class='form-control input-year' 
+					<select ng-model="currentDate.year" class='form-control input-year' ng-change='selectionChanged()'
 						ng-options='d for d in yearList'>
 					</select>
 
-					<a class='btn' ng-click='increase()'>
+					<a class='btn' ng-click='increase(1)'>
 						<i class='glyphicon glyphicon-circle-arrow-right'></i>
 					</a>
 			</div>

@@ -23,17 +23,30 @@
 	    </div>
 		</div>
 
-		<div class="container">
-			<div cal-month-view today='today' ng-hide='!showMonthView' show-month-view='showMonthView'>
-			</div>
-			<div cal-week-view today='today' ng-hide='showMonthView' show-month-view='showMonthView'>
-			</div>
+		<div id='ex1' class="container">
+			<div ng-view></div>
 		</div>		
 		
+	
+
+
 		<!-- User scripts -->
 		<script src='/js/data.js'></script>
+		
+
 		<script src='/js/app.js'></script>
-		<script src='/js/TaskDataService.js'></script>
+		<script src='/js/authenticate.js'></script>
+
+		<script src='/js/routes.js'></script>
+
+		<script src='/js/services/localStorage.js'></script>
+		<script src='/js/services/dateService.js'></script>
+		<script src='/js/services/taskOptionsService.js'></script>
+		<script src='/js/services/repository.js'></script>
+
+		<script src='/js/services/taskDataService.js'></script>
+
+
 		<script src='/js/components/container-list/main.js'></script>
 		<script src='/js/components/calendar/main.js'></script>
 		<script src='/js/components/week-view/main.js'></script>

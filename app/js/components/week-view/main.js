@@ -1,4 +1,4 @@
-app.directive('calWeekView', ['$compile', 'DateService', function($compile, DateService){
+app.directive('calWeekView', ['$compile', 'DateService', '$location', function($compile, DateService, $location){
 	return{
 		templateUrl: 'js/components/week-view/template.html',
 		restrict: 'AC',
@@ -9,11 +9,18 @@ app.directive('calWeekView', ['$compile', 'DateService', function($compile, Date
 			showMonthView : '='
 		},
 		controller: ['$scope', function($scope){
-			
+			console.log('WEEK VIEW');
+			console.log($scope.today);
+
 			function initialize(){
 				$scope.collection = [];
 				$scope.showList = true;
 				$scope.selectedDateId = 0;
+			}
+
+			function navigateToDate(aDate, view){
+				view = view || 'week-view';
+				$location.url('/' + view + '?selectedDate=' + DateService.toDateId(aDate));
 			}
 
 			function updateWeek(){
@@ -30,40 +37,26 @@ app.directive('calWeekView', ['$compile', 'DateService', function($compile, Date
 				});
 				$scope.collection = collection;
 			}
-
-			$scope.$watch('today', function(){
-				console.log('changed week-view');
-				updateWeek();
-			});
-
+			
 			$scope.dayClicked = function(id){
-				console.log('day clicked!');
-				var vc='';
-				angular.forEach($scope.collection, function(aModel){
-					if (aModel.id === id){
-						console.log(id);
-						vc = aModel.date;
+				for(var i=0; i<$scope.collection.length; i++){
+					if ($scope.collection[i].id === id){
+						navigateToDate($scope.collection[i].date);
 					}
-				});
-				$scope.today = vc;
-			};
+				}
+			}
 
 			$scope.previousWeek= function(){
-				console.log('prev week');
-				$scope.today = DateService.getDateBehindByOneWeek($scope.today);
-				updateWeek();
+				navigateToDate(DateService.getDateBehindByOneWeek($scope.today));
 			};
 			$scope.nextWeek = function(){
-				console.log('next week');
-				$scope.today = DateService.getDateAheadByOneWeek($scope.today);
-				updateWeek();
+				navigateToDate(DateService.getDateAheadByOneWeek($scope.today));
 			};
 
-			initialize();
+			updateWeek();
 
 			$scope.monthView = function(){
-				console.log('here!!');
-				$scope.showMonthView = true;
+				navigateToDate($scope.today, 'month-view');
 			};
 		}]
 	};

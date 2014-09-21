@@ -1,7 +1,18 @@
 <div class='dayDetails col-xs-9 col-md-9'>
 	<div class="row">
 		<div class="col-xs-6">
-			{{selectedDateId}}
+			<div class='heading label' ng-class='statusLabel'> 
+				<span>
+				Total Time:  
+				<span class='badge badge-important'>{{totalTime.timeHrs}}</span>hrs 
+				<span class='badge badge-important'> {{totalTime.timeMins}}</span>mins
+				</span>
+				<span class='pull-right btn btn-default' ng-click='addTask()'>
+					<i class='glyphicon glyphicon-plus'></i>
+				</span>
+			</div>
+			
+
 			<div container-list collection='collection' class-names='list-unstyled  task-list' 
 				show='true' selected-id='selectedId' 
 						item-template='task-item'>

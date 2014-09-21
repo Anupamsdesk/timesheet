@@ -3,7 +3,25 @@
 
 body{
 	margin-top: 40px;
+	::-webkit-scrollbar {
+    width: 0.75em;
+	}
+	::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	}
+	::-webkit-scrollbar-thumb {
+  	background-color: darkgrey;
+  	//outline: 1px solid slategrey;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+ 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+
+	}
 }
+
+
+
 .navbar{
 	height: 30px;
 	min-height: 30px; 
@@ -19,6 +37,14 @@ body{
 	border-left-style: solid;
 	border-color: @calendar-container-border-color;
 
+	input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+  }
+
+  input.ng-valid.ng-dirty {
+    //background-color: #78FA89;
+  }
+
 	.form-group{
 		margin-bottom: 5px;
 	}
@@ -28,6 +54,25 @@ body{
 	}
 }
 .task-list{
+	height: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-width:1px;
+	border-style: solid;;
+	border-color: @calendar-container-border-color;
+	.blank-item{
+		display: block;
+		border-radius: 5px;
+		padding: 5px 5px;
+		border-width: 1px;
+		border-style: solid;
+		margin-top: 2px;
+		cursor: pointer;
+		border-color: @calendar-container-border-color;
+		font-style: italic;
+		min-height: 40px;
+		background-color: @calendar-day-details-background-color;
+	}
 	.list-item{
 		display: block;
 		border-radius: 5px;
@@ -37,6 +82,7 @@ body{
 		margin-top: 2px;
 		cursor: pointer;
 		border-color: @calendar-container-border-color;
+		font-style: italic;
 	}
 	.list-item:hover{
 			background-color: darken(@calendar-days-background-color, 10%);
@@ -57,6 +103,22 @@ body{
 	.dayDetails{
 		//background-color: @calendar-day-details-background-color;
 		min-height: 400px;
+
+		.heading{
+			display: block;
+			line-height: 40px;
+			border-width: 1px;
+			border-style: solid;
+			border-radius: 3px;
+			padding: 2px;
+			.pull-right{
+				margin: 3px;
+			}
+			font-size: medium;
+			.badge{
+				font-size: medium;
+			}
+		}
 	}
 	.days-view{
 		border-width: 1px;
@@ -96,7 +158,7 @@ body{
 			}
 			.active {
 				background-color: @calendar-day-details-background-color;
-				width: 105%;
+				//width: 105%;
 				border-right: none;
 			}
 			.active:hover{

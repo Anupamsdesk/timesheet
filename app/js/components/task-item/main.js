@@ -7,8 +7,11 @@ app.directive('taskItem', ['$compile', function($compile){
 		scope: {
 			model: '='
 		},
-		controller: ['$scope', function(self){
-			console.log('task item: ' + self.model);
+		controller: ['$scope', function($scope){
+			$scope.remove = function($event){
+				$scope.$emit('delete-model', $scope.model);
+				$event.stopPropagation();
+			}
 		}]
 	};
 }]);
